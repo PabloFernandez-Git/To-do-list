@@ -16,9 +16,10 @@ const InputRadio = styled.input`
     } 
 `
 
-const ColorBox = ( {color, handleChangeColor} ) => (
+const ColorBox = ( {color, handleChangeColor, isChecked} ) => (
     <>
         <InputRadio
+            defaultChecked={isChecked}
             id={color} 
             type="radio" 
             name="color"

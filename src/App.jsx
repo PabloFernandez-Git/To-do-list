@@ -30,6 +30,8 @@ class App extends Component {
 
     render() {
 
+        const {colorSelected} = this.state
+
         return (
             <>
                 <GlobalSyle />
@@ -37,6 +39,7 @@ class App extends Component {
                 <FormTask
                     handleChangeColor={this.handleChangeColor}
                     handleSubmit={this.handleSubmit}
+                    colorSelected={colorSelected}
                 />
             </>
 

@@ -103,8 +103,57 @@ handleSubmit = (e) => {
 }
 
 
-5. 
+5. Color por defecto
 
+- Establecer un key unico para el map (FormTask.jsx)
+
+Descargar 'shortid' usando npm
+import { generate as id } from 'shortid'
+key={id()}
+
+
+- Establecer que por defecto el primer elemento este marcado
+
+Al haber agregado la funcion 'onChange' ya no tenemos el estado por defecto en el formulario (inputs)
+
+Para recuperar esta funcionalidad tenemos dos propiedades: checked o defaulchecked
+
+En nuestro 'app.jsx' destructuramos colorSelected para poder enviarlo hasta el 'ColorBox'
+
+const {colorSelected} = this.state
+
+Una vez destructurado lo pasamos dentro del formulario.
+
+<FormTask
+    handleChangeColor={this.handleChangeColor}
+    handleSubmit={this.handleSubmit}
+    colorSelected={colorSelected}
+/>
+
+Ahora que ya lo tenemos en el formulario podemos usar 'colorSelected' para establecer si tiene que estar marcado o no.
+
+En 'FormTask' creamos una prop llamada 'isChecked' para saber si este componente debe estar seleccionado o no.
+Antes destructuramos la prop para poder usarla.
+
+const FormTask = ({ handleChangeColor, handleSubmit, colorSelected }) => ()
+
+isChecked={colorSelected === color}
+
+En el 'isChecked' necesitamos enviar un booleano para saber si esta marcado o no; por lo tanto solo tenemos que preguntarle si colorSelected es igual a color.
+
+Eso significara que cuando el color seleccionado sea igual al color que esta renderizando o a la caja de color que este pintando en ese caso si queremos que sea 'checked'.
+
+Por ultimo en 'ColorBox' destructuramos 'isChecked' y le decimos que el defaulchecked es igual a 'isChecked'.
+De esta forma recuperamos la funcionalidad.
+El primer color queda marcado por defecto al montar el componente y podemos seleccionar los demas si asi lo quisieramos.
+
+
+const ColorBox = ( {color, handleChangeColor, isChecked} ) => ()
+
+defaultChecked={isChecked}
+
+
+6. 
 
 
 

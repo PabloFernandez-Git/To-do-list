@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components'
 import allColors from '../styles/colors'
 import ColorBox from './ColorBox';
+import { generate as id } from 'shortid'
+
 
 const Input = styled.input`
     border: none;
@@ -25,13 +27,18 @@ const ColorsContainer = styled.div`
     margin: 0 auto .5rem;
 `
 
-const FormTask = ( {handleChangeColor, handleSubmit} ) => (
+const FormTask = ({ handleChangeColor, handleSubmit, colorSelected }) => (
     <form onSubmit={handleSubmit}>
         <Input name="title" type="text" />
         <ColorsContainer>
             {
                 allColors.colors.map(color => (
-                    <ColorBox handleChangeColor={handleChangeColor} color={color} /> 
+                    <ColorBox
+                        handleChangeColor={handleChangeColor}
+                        color={color}
+                        key={id()}
+                        isChecked={colorSelected === color}
+                    />
                 ))
             }
         </ColorsContainer>
