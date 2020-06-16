@@ -32,6 +32,79 @@ Utilizando 'styled-components' crear los componentes necesarios: Input, Button y
 Creamos un componente para mostrar los colores que podemos añadirle a nuestras tareas utilizando un input y un label.
 
 
-4. 
+4. Formulario - Componente de colores
+
+Darle color a cada input y asociar el label con el input.
+
+Destructurar las props y states para poder usarlos.
+
+Truco css: usar un input asociado a un label y luego ocultar el input para una mejor presentacion.
+
+const InputRadio = styled.input`
+    display: none;
+    &:checked + label {
+        border: 1px solid #fff; 
+    } 
+`
+
+Informar a nuestro 'app' cuando estamos cambiando el color para usarlo en nuestras tareas.
+
+Crear en nuestro app un state para indicar cual es el color que esta seleccionado.
+
+state = {
+    colorSelected: allColors.colors[0]
+}
+
+De esta forma le damos un color por defecto que luego podemos cambiar usando un evento/manejador de evento (funcion).
+
+handleChangeColor = (color) => {
+    this.setState({ colorSelected: color })
+}
+
+
+Dentro del form creamos el evento personalizado y, de esta forma, tenemos un evento personalizado que llama a la funcion creada en el app.
+
+<FormTask
+    handleChangeColor={this.handleChangeColor}
+    handleSubmit={this.handleSubmit}
+/>
+
+
+Ahora dentro de <ColorsContainer> (FormTask.jsx) ya podemos usar esa funcion porque se la estamos enviando como prop dese app.jsx
+
+Dentro del <ColorBox> (de FormTask.jsx) necesitamos enviar esta prop para poder utilizarla en el componente ColorBox
+
+<ColorBox handleChangeColor={handleChangeColor} color={color} /> 
+
+Y ahora, ya dentro del componente ColorBox, tenemos libertad para usar esa prop (handleChangeColor)
+
+Usando 'onChange' que es el evento que se dispara cuando cambiamos el input, le indicamos que llame a 'handleChangeColor'.
+Para poder enviarle un parametro (en este caso un color) pasamos una arrow function y ejecutamos la funcion pasandole el color que estamos enviando como prop. 
+
+const ColorBox = ( {color, handleChangeColor} ) => (
+    <>
+        <InputRadio
+            id={color} 
+            type="radio" 
+            name="color"
+            onChange={ () => handleChangeColor(color)} 
+        />
+        <LabelColor htmlFor={color} color={color}></LabelColor>
+    </>
+)
+
+
+Estamos enviando el evento personalizado a traves del formulario y del formulario al 'ColorBox'.
+
+Por ultimo debemos evitar el comportamiento por default que tiene el formulario (recargarse)
+
+handleSubmit = (e) => {
+    e.preventDefault()
+}
+
+
+5. 
+
+
 
 

@@ -25,13 +25,13 @@ const ColorsContainer = styled.div`
     margin: 0 auto .5rem;
 `
 
-const FormTask = () => (
-    <form>
+const FormTask = ( {handleChangeColor, handleSubmit} ) => (
+    <form onSubmit={handleSubmit}>
         <Input name="title" type="text" />
         <ColorsContainer>
             {
                 allColors.colors.map(color => (
-                    <ColorBox /> 
+                    <ColorBox handleChangeColor={handleChangeColor} color={color} /> 
                 ))
             }
         </ColorsContainer>

@@ -16,13 +16,28 @@ const GlobalSyle = createGlobalStyle`
 
 class App extends Component {
 
+    state = {
+        colorSelected: allColors.colors[0]
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+    }
+
+    handleChangeColor = (color) => {
+        this.setState({ colorSelected: color })
+    }
+
     render() {
 
         return (
             <>
                 <GlobalSyle />
                 <h1>To do list</h1>
-                <FormTask />
+                <FormTask
+                    handleChangeColor={this.handleChangeColor}
+                    handleSubmit={this.handleSubmit}
+                />
             </>
 
         )
