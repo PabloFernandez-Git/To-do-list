@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import allColors from '../styles/colors'
+import ColorBox from './ColorBox';
 
 const Input = styled.input`
     border: none;
@@ -18,14 +19,22 @@ const Button = styled.button`
 
 const ColorsContainer = styled.div`
     width: 150px;
-    height: 50px;
-    background-color: red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto .5rem;
 `
 
 const FormTask = () => (
     <form>
         <Input name="title" type="text" />
-        <ColorsContainer></ColorsContainer>
+        <ColorsContainer>
+            {
+                allColors.colors.map(color => (
+                    <ColorBox /> 
+                ))
+            }
+        </ColorsContainer>
         <Button>Add task</Button>
     </form>
 )

@@ -27,6 +27,11 @@ Realizar las importaciones necesarias (React, 'styled-components' y 'colors.js')
 Utilizando 'styled-components' crear los componentes necesarios: Input, Button y ColorsContainer.
 
 
-3. 
+3. Formulario - Creando los inputs radio
+
+Creamos un componente para mostrar los colores que podemos añadirle a nuestras tareas utilizando un input y un label.
+
+
+4. 
 
 
