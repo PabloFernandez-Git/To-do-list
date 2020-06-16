@@ -1,0 +1,32 @@
+To do list!
+
+1. Configuración inicial
+
+Importar 'styled-components'
+
+Importar los estilos globales
+import { createGlobalStyle } from 'styled-components'
+
+Dentro de 'src' crear la carpeta 'styles' que contendra 'colors.js' donde tendremos los colores que usaremos en nuestra aplicacion.
+
+Importar 'colors.js' donde necesitemos usarlos
+import allColors from './styles/colors'
+
+Crear en 'App.jsx' los estilos globales de la aplicacion
+
+Recordar que para usar el componente <GlobalSyle /> debemos agregarlo como si fuera un componente mas (solo es necesario un tag con autocierre)
+
+Recordar usar <Fragment></Fragment> o <></> para utilizar varios tags en un mismo render.
+
+
+2. Formulario - Input text
+
+Crear un componente donde tendremos nuestro formulario.
+Realizar las importaciones necesarias (React, 'styled-components' y 'colors.js')
+
+Utilizando 'styled-components' crear los componentes necesarios: Input, Button y ColorsContainer.
+
+
+3. 
+
+
