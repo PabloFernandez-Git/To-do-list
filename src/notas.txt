@@ -106,6 +106,7 @@ handleSubmit = (e) => {
 5. Color por defecto
 
 - Establecer un key unico para el map (FormTask.jsx)
+(Siempre que usemos un .map para recorrer un array este necesita un id en React)
 
 Descargar 'shortid' usando npm
 import { generate as id } from 'shortid'
@@ -153,7 +154,69 @@ const ColorBox = ( {color, handleChangeColor, isChecked} ) => ()
 defaultChecked={isChecked}
 
 
-6. 
+6. Creando componente task
+
+En nuestro 'app.jsx' creamos en el estado un array de tareas que va a ser el que controle como se van a pintar las tareas.
+
+state = {
+    colorSelected: allColors.colors[0],
+    tasks: [
+        {
+            title: 'Aprender react',
+            color: allColors.colors[0],
+            done: false
+        }
+    ]
+}
+
+Esto va a ser un array de objetos donde vamos a tener nuestra tarea.
+El atributo 'done' va a controlar si la tarea esta terminada o no.
+
+El siguiente paso seria pintar esa tarea en pantalla.
+
+Primero destructuramos el array dentro del render.
+
+const { colorSelected, tasks } = this.state
+
+Luego agrego un <div> y utilizando un '.map' recorremos el array para obtener las tareas.
+Provisoriamente podemos mostrarlas dentro de un <p> pero en el siguiente paso debemos crear un componente para controlar esta funcionalidad.
+
+<div>
+    {
+        tasks.map(task => (
+            <p>{task.title}</p>
+        ))
+    }
+</div>
+
+
+Creamos un componente 'Task.jsx'
+Creamos los styled-components necesarios:
+- Un contenedor para cada tarea
+- Un boton para borrar la tarea
+- Un <p> que contendra el nombre de la tarea
+
+Creamos nuestro componente tarea
+Usamos una arrow function con return automatico porque este componente no necesita state.
+
+const Task = () => (
+    <TaskContainer>
+        <input type="checkbox" />
+        <TaskText></TaskText>
+        <TaskButton>Delete</TaskButton>
+    </TaskContainer>
+)
+
+El input checkbox nos sirve para controlar si la tarea se completo o no.
+El texto de la tarea.
+El boton para eliminarla.
+
+Finalmente usamos este comoponente en lugar del <p> que habiamos usamos en nuestro App.jsx originalmente para hacer de vista previa.
+
+
+7. Estilizando y rellenando el componente task
+
+
 
 
 

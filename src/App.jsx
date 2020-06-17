@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { createGlobalStyle } from 'styled-components'
 import allColors from './styles/colors'
 import FormTask from './components/FormTask'
+import Task from './components/Task'
 
 
 const GlobalSyle = createGlobalStyle`
@@ -17,7 +18,14 @@ const GlobalSyle = createGlobalStyle`
 class App extends Component {
 
     state = {
-        colorSelected: allColors.colors[0]
+        colorSelected: allColors.colors[0],
+        tasks: [
+            {
+                title: 'Aprender react',
+                color: allColors.colors[0],
+                done: false
+            }
+        ]
     }
 
     handleSubmit = (e) => {
@@ -30,7 +38,7 @@ class App extends Component {
 
     render() {
 
-        const {colorSelected} = this.state
+        const { colorSelected, tasks } = this.state
 
         return (
             <>
@@ -41,6 +49,13 @@ class App extends Component {
                     handleSubmit={this.handleSubmit}
                     colorSelected={colorSelected}
                 />
+                <div>
+                    {
+                        tasks.map(task => (
+                            <Task></Task>
+                        ))
+                    }
+                </div>
             </>
 
         )
