@@ -216,6 +216,43 @@ Finalmente usamos este comoponente en lugar del <p> que habiamos usamos en nuest
 
 7. Estilizando y rellenando el componente task
 
+En nuestro 'App.jsx' le pasamos a nuestro componente <Task> las props que necesitamos e importamos 'shortid' para generar un id unico.
+
+tasks.map(task => (
+    <Task
+        key={id()} 
+        title={task.title}
+        color={task.color}
+    />
+))
+
+Una vez que tenemos listas las props (titulo y color) trabajamos en nuestro componente 'Task.jsx'
+
+Primero destructuramos las props 'color' y 'title' para poder usarlas.
+Dentro de <TaskText> le pasamos 'title' interpolado para que pueda leerlo.
+El 'color' se lo tenemos que pasar a nuestro contenedor <TaskContainer>
+
+const Task = ({ color, title }) => (
+    <TaskContainer color={color}>
+        <input type="checkbox" />
+        <TaskText>{title}</TaskText>
+        <TaskButton>Delete</TaskButton>
+    </TaskContainer>
+)
+
+
+Ahora que <TaskContainer> ya tiene el 'color' lo podemos utilizar en nuestro 'TaskContainer' (styled-component) como prop.
+
+const TaskContainer = styled.div`
+    background-color: ${({color}) => color};
+`
+
+
+Solo resta darle estilos al componente...
+
+
+8. Creando nuevas tareas
+
 
 
 

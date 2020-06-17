@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { createGlobalStyle } from 'styled-components'
+import {generate as id} from 'shortid'
 import allColors from './styles/colors'
 import FormTask from './components/FormTask'
 import Task from './components/Task'
+
 
 
 const GlobalSyle = createGlobalStyle`
@@ -52,7 +54,11 @@ class App extends Component {
                 <div>
                     {
                         tasks.map(task => (
-                            <Task></Task>
+                            <Task
+                                key={id()} 
+                                title={task.title}
+                                color={task.color}
+                            />
                         ))
                     }
                 </div>
