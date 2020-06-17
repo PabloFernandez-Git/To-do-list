@@ -253,6 +253,48 @@ Solo resta darle estilos al componente...
 
 8. Creando nuevas tareas
 
+Añadir tareas a traves del formulario.
+La informacion del formulario llega a 'handleSubmit'.
+Por lo tanto, en 'handleSubmit' vamos a comprobar si 'e.target.title.value' es distinto de vacio (para saber si existe un texto dentro del input), de ser asi ejecutamos la funcion 'createNewTask' que se encargara de agregar tareas a nuestra lista.
+'createNewTask' necesita como parametro el valor del input (e.target.title.value).
+
+
+handleSubmit = (e) => {
+        e.preventDefault()
+        if(e.target.title.value.trim() !== ''){
+            this.createNewTask(e.target.title.value)
+        }
+    }
+
+
+Creamos la funcion que agregara las tareas ingresadas en el input a nuestra lista.
+
+createNewTask = (title) => {
+    const NewTask = {
+        id: id(),
+        title: title,
+        color: this.state.colorSelected,
+        done: false
+    }
+
+    const allTasks = [...this.state.tasks, NewTask]
+
+    this.setState({tasks: allTasks})
+}
+
+
+Creamos un objeto que luego agregaremos al array de tareas.
+Dentro del objeto necesitamos un id, titulo, el color que tendra la tarea y un booleano que indicara si la tarea esta completa o no.
+
+Creamos un array donde tenemos las tareas que ya existen + la nueva! (Vamos agregando tareas)
+
+Seteamos el state con el nuevo valor que se genera.
+El nuevo valor para 'tasks' sera 'allTasks', esto es igual a las tareas que ya teniamos mas las que vayamos agregando.
+
+
+
+9. Completando tareas
+
 
 
 

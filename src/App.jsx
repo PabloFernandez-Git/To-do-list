@@ -32,6 +32,22 @@ class App extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
+        if(e.target.title.value.trim() !== ''){
+            this.createNewTask(e.target.title.value)
+        }
+    }
+
+    createNewTask = (title) => {
+        const NewTask = {
+            id: id(),
+            title: title,
+            color: this.state.colorSelected,
+            done: false
+        }
+
+        const allTasks = [...this.state.tasks, NewTask]
+
+        this.setState({tasks: allTasks})
     }
 
     handleChangeColor = (color) => {
