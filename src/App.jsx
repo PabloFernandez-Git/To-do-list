@@ -33,6 +33,7 @@ class App extends Component {
         e.preventDefault()
         if (e.target.title.value.trim() !== '') {
             this.createNewTask(e.target.title.value)
+            e.target.title.value = ''
         }
     }
 
@@ -64,6 +65,14 @@ class App extends Component {
         this.setState({ tasks: currentTasks })
     }
 
+    handleDeleteTask = (id) => {
+        //const taskToDelete = this.getTask(id)
+        let currentTasks = this.state.tasks
+        currentTasks = currentTasks.filter(task => task.id !== id)
+
+        this.setState({ tasks: currentTasks })
+    }
+
     handleChangeColor = (color) => {
         this.setState({ colorSelected: color })
     }
@@ -79,6 +88,9 @@ class App extends Component {
                     handleSubmit={this.handleSubmit}
                     colorSelected={colorSelected}
                 />
+
+                {this.state.tasks.length === 0 && <h2>Not tasks yet</h2> }
+
                 <div>
                     {
                         tasks.map(task => (
@@ -87,7 +99,8 @@ class App extends Component {
                                 done={task.done}
                                 title={task.title}
                                 color={task.color}
-                                handleCompleteTask={() => this.handleCompleteTask(task.id)}
+                                handleCompleteTask= { () => this.handleCompleteTask(task.id)}
+                                handleDeleteTask= { () => this.handleDeleteTask(task.id)}             
                             />
                         ))
                     }

@@ -23,7 +23,7 @@ const TaskText = styled.p`
     text-decoration:${({ done }) => done ? 'line-through' : 'none'};
 `
 
-const Task = ({ color, title, done, handleCompleteTask }) => (
+const Task = ({ color, title, done, handleCompleteTask, handleDeleteTask }) => (
     <TaskContainer color={color}>
         <input
             type="checkbox"
@@ -31,7 +31,7 @@ const Task = ({ color, title, done, handleCompleteTask }) => (
             defaultChecked={done}
         />
         <TaskText done={done}>{title}</TaskText>
-        <TaskButton>Delete</TaskButton>
+        <TaskButton onClick={handleDeleteTask}>Delete</TaskButton>
     </TaskContainer>
 )
 

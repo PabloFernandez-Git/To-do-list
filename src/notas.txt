@@ -329,7 +329,63 @@ Para finalizar y que quede marcado el 'checkbox' debemos usar 'defaultchecked' y
 
 10. Borrando tareas
 
+(El camino mas simple siempre sera crear una funcion para manejar un evento, pasar esta funcion como prop y asignarla donde queremos aplicarla (onClick/onChange/etc))
 
+
+Creando la funcion para borrar tareas:
+
+'filter' nos va a devolver un array. 
+Quiero que me devuelva todas las que no coincidan con el 'id'
+
+currentTasks = currentTasks.filter(task => task.id !== id)
+
+Finalmente actualizamos el 'state' (con las tareas que quedan luego de filtrar la que eliminamos)
+
+
+handleDeleteTask = (id) => {
+    let currentTasks = this.state.tasks
+    currentTasks = currentTasks.filter(task => task.id !== id)
+
+    this.setState({ tasks: currentTasks })
+}
+
+
+Paso la funcion que creamos como prop dentro de la lista de tareas:
+
+handleDeleteTask= { () => this.handleDeleteTask(task.id)}
+
+
+Dentro de 'Task.jsx', en el boton 'delete' usamos un evento 'onClick' para pasar nuestra funcion:
+(Previo destructurar la prop)
+
+<TaskButton onClick={handleDeleteTask}>Delete</TaskButton>
+
+
+Adicionales:
+
+- Mostrar mensaje cuando no hay tareas
+
+En 'app.jsx' renderizamos un mensaje si no hay tareas para mostrar.
+
+{this.state.tasks.length === 0 && <h2>Not tasks yet</h2> }
+
+
+- Borrar el contenido del input luego de agregar la tarea
+
+Esta linea de codigo asignara 'vacio' al input luego que se crea una nueva tarea:
+e.target.title.value = ''
+
+handleSubmit = (e) => {
+    e.preventDefault()
+    if (e.target.title.value.trim() !== '') {
+        this.createNewTask(e.target.title.value)
+        e.target.title.value = ''
+    }
+}
+
+
+
+11. Retoques finales
 
 
 
