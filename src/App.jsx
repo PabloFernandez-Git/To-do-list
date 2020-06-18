@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { createGlobalStyle } from 'styled-components'
-import {generate as id} from 'shortid'
+
+import { generate as id } from 'shortid'
 import allColors from './styles/colors'
 import FormTask from './components/FormTask'
 import Task from './components/Task'
-
-
 
 const GlobalSyle = createGlobalStyle`
     body{
@@ -32,22 +31,37 @@ class App extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        if(e.target.title.value.trim() !== ''){
+        if (e.target.title.value.trim() !== '') {
             this.createNewTask(e.target.title.value)
         }
     }
 
     createNewTask = (title) => {
-        const NewTask = {
+        const newTask = {
             id: id(),
-            title: title,
+            title,
             color: this.state.colorSelected,
             done: false
         }
 
-        const allTasks = [...this.state.tasks, NewTask]
+        const allTasks = [...this.state.tasks, newTask]
 
-        this.setState({tasks: allTasks})
+        this.setState({ tasks: allTasks })
+    }
+
+    getTask = (id) => {
+        const task = this.state.tasks.find(task => task.id === id)
+        return task
+    }
+
+    handleCompleteTask = (id) => {
+        const currentTasks = this.state.tasks
+        const task = this.getTask(id)
+        const index = currentTasks.indexOf(task)
+
+        currentTasks[index].done = !currentTasks[index].done
+
+        this.setState({ tasks: currentTasks })
     }
 
     handleChangeColor = (color) => {
@@ -55,9 +69,7 @@ class App extends Component {
     }
 
     render() {
-
         const { colorSelected, tasks } = this.state
-
         return (
             <>
                 <GlobalSyle />
@@ -71,9 +83,11 @@ class App extends Component {
                     {
                         tasks.map(task => (
                             <Task
-                                key={id()} 
+                                key={id()}
+                                done={task.done}
                                 title={task.title}
                                 color={task.color}
+                                handleCompleteTask={() => this.handleCompleteTask(task.id)}
                             />
                         ))
                     }

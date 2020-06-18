@@ -1,32 +1,33 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const LabelColor = styled.label`
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    margin-top: .5rem;
-    background-color: ${( {color} ) => color};
+    display:inline-block;
+    width:30px;
+    height:30px;
+    margin-top:.5rem;
+    background-color: ${({ color }) => color};
 `
 
 const InputRadio = styled.input`
-    display: none;
-    &:checked + label {
-        border: 1px solid #fff; 
-    } 
+    display:none;
+    &:checked + label{
+        border:1px solid #fff;
+    }
 `
 
-const ColorBox = ( {color, handleChangeColor, isChecked} ) => (
+
+const ColorBox = ({ color, handleChangeColor, isChecked }) => (
     <>
         <InputRadio
             defaultChecked={isChecked}
-            id={color} 
-            type="radio" 
+            id={color}
             name="color"
-            onChange={ () => handleChangeColor(color)} 
+            onChange={() => handleChangeColor(color)}
+            type="radio"
         />
         <LabelColor htmlFor={color} color={color}></LabelColor>
     </>
 )
 
-export default ColorBox;
+export default ColorBox

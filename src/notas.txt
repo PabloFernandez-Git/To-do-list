@@ -295,6 +295,40 @@ El nuevo valor para 'tasks' sera 'allTasks', esto es igual a las tareas que ya t
 
 9. Completando tareas
 
+Marcar el 'checkbox' y que esta accion tache la tarea.
+
+En nuestro app.jsx usamos una prop 'done={task.done}' para saber si la tarea esta completa (dentro del div donde se pintaran nuestra lista de tareas)
+
+Esta prop la utilizamos en el componente Task.jsx (destructuramos la misma antes de usarla)
+
+const Task = ({ color, title, done, handleCompleteTask }) => ()
+<TaskText done={done}>{title}</TaskText>
+
+Utilizando css tachamos la tarea en el caso que este completa.
+Usamos text-decoration en el caso que este completa.
+Destructuramos la prop 'done' y utilizando un ternario le indicamos tachado si es true o 'none' si es falso.
+
+text-decoration:${({ done }) => done ? 'line-through' : 'none'};
+
+En 'app.jsx' pasamos como prop 'handleCompleteTask' (la funcion que controla si una tarea se completo)
+
+handleCompleteTask={() => this.handleCompleteTask(task.id)}
+
+En 'Task.js' usamos 'onChange' para controlar el evento.
+Cuando cambie (marcada/desmarcada) se activara.
+Siempre destructurar la prop que vayamos a usar.
+
+<input
+    type="checkbox"
+    onChange={handleCompleteTask}
+    defaultChecked={done}
+/>
+
+Para finalizar y que quede marcado el 'checkbox' debemos usar 'defaultchecked' y la prop 'done'.
+
+
+10. Borrando tareas
+
 
 
 
