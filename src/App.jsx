@@ -89,7 +89,7 @@ class App extends Component {
                     colorSelected={colorSelected}
                 />
 
-                {this.state.tasks.length === 0 && <h2>Not tasks yet</h2> }
+                {this.state.tasks.length === 0 && <p>Not tasks yet</p> }
 
                 <div>
                     {

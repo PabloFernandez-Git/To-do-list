@@ -15,7 +15,16 @@ const Input = styled.input`
 const Button = styled.button`
     background-color: transparent;
     border:1px solid ${allColors.mainColor};
+    border-radius: 5px;
     color: ${allColors.mainColor};
+    padding: .3rem .5rem;
+    cursor: pointer;
+    outline: none;
+
+    &:hover {
+        background-color: ${allColors.mainColor};
+        color: #222;
+    }
 `
 
 const ColorsContainer = styled.div`

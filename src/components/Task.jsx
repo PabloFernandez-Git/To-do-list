@@ -11,14 +11,26 @@ const TaskContainer = styled.div`
     width:100%;
     max-width:250px;
     margin: 1rem auto;
+    border-radius: 5px;
 `
 
 const TaskButton = styled.button`
+    font-size: .8rem;
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: .3rem .5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
 
+    &:hover {
+        background-color: #fff;
+        color: #222;
+    }
 `
 
 const TaskText = styled.p`
-    font-size:.8rem;
     color:#fff;
     text-decoration:${({ done }) => done ? 'line-through' : 'none'};
 `

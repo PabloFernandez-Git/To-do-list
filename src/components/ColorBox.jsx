@@ -7,6 +7,7 @@ const LabelColor = styled.label`
     height:30px;
     margin-top:.5rem;
     background-color: ${({ color }) => color};
+    border-radius: 5px;
 `
 
 const InputRadio = styled.input`

@@ -367,7 +367,7 @@ Adicionales:
 
 En 'app.jsx' renderizamos un mensaje si no hay tareas para mostrar.
 
-{this.state.tasks.length === 0 && <h2>Not tasks yet</h2> }
+{this.state.tasks.length === 0 && <p>Not tasks yet</p> }
 
 
 - Borrar el contenido del input luego de agregar la tarea
@@ -387,5 +387,9 @@ handleSubmit = (e) => {
 
 11. Retoques finales
 
+Corregir mediante css/styled-components detalles de diseño
+
+
+12. Migrando aplicación a hooks
 
 
